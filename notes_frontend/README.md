@@ -1,75 +1,42 @@
-# Nuxt Minimal Starter
+# Ocean Notes (Nuxt 3)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern notes frontend built with Nuxt 3, styled with the "Ocean Professional" theme, integrated with a FastAPI backend on port 3001.
 
-## Setup
+## Environment
 
-Make sure to install dependencies:
+Configure the API base URL to the backend:
 
+Create a `.env` file in the project root:
+```
+NUXT_PUBLIC_API_BASE=http://localhost:3001
+```
+
+If not provided, it defaults to `http://localhost:3001`.
+
+## Development
+
+Install dependencies and start the dev server:
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Visit http://localhost:3000
 
-Build the application for production:
+## Features
 
-```bash
-# npm
-npm run build
+- JWT-based auth (login/register)
+- Notes CRUD (list, view/edit, create, delete)
+- Route guards redirect unauthenticated users to login
+- Minimal API client using `$fetch` with CORS-safe headers
+- Ocean Professional theme (blue primary, amber accents, gradients)
 
-# pnpm
-pnpm build
+## Structure
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `composables/useApi.ts` API client and CRUD helpers
+- `composables/useAuth.ts` Auth state and JWT storage
+- `middleware/auth.global.ts` Route guards
+- `pages/auth/login.vue` and `pages/auth/register.vue`
+- `pages/index.vue` List notes
+- `pages/notes/create.vue` Create note
+- `pages/notes/[id].vue` View/Edit/Delete note
